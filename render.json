@@ -1,6 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
+  "publishPath": "dist",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",

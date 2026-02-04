@@ -35,7 +35,16 @@ const LinguistApp = () => {
       setAnalysisData(response)
     } catch (err) {
       const apiError = err as ApiError
-      setError(apiError.message || 'Failed to analyze text. Please check if the backend server is running.')
+      let errorMessage = apiError.message || 'Failed to analyze text.'
+      
+      // Provide helpful error messages
+      if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
+        errorMessage = 'Cannot connect to the API server. Please check your internet connection and ensure the backend is running at https://nlp-xxmc.onrender.com'
+      } else if (errorMessage.includes('CORS')) {
+        errorMessage = 'CORS error: The backend server may not be configured to allow requests from this origin.'
+      }
+      
+      setError(errorMessage)
       console.error('Analysis error:', apiError)
     } finally {
       setLoading(false)

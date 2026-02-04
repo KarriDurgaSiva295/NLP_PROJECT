@@ -165,6 +165,8 @@ def analyze():
         }), 500
 
 if __name__ == '__main__':
+    import os
+    port = int(os.environ.get('PORT', 5000))
     print('Starting N-Gram Analysis API server...')
-    print('API will be available at http://localhost:5000')
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    print(f'API will be available at http://0.0.0.0:{port}')
+    app.run(debug=False, port=port, host='0.0.0.0')

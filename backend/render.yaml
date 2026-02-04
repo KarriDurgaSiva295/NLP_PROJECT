@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: nlp-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.6
+    healthCheckPath: /api/health
